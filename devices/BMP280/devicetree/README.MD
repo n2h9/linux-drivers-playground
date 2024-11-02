@@ -1,0 +1,1 @@
+arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
