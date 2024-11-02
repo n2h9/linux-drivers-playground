@@ -1,5 +1,5 @@
-## Kernel
-https://github.com/raspberrypi/linux rpi-6.6.y
+# Playground
 
-## Formatting
-Formatting follows .clang-format from the kernel folder;
+[Device drivers](devices/README.MD)
+
+[Observability](observability/README.MD)
