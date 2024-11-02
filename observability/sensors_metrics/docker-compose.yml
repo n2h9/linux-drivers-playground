@@ -1,0 +1,43 @@
+# docker-compose.yml
+#version: '3.8'
+
+services:
+  prometheus:
+    image: prom/prometheus:v3.0.0-beta.1
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Mount the config file
+      - prometheus_data:/prometheus # docker managed volume
+    ports:
+      - "9090:9090"  # Expose port 9090
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml  # Specify the config file path
+    restart: always
+
+  grafana:
+    image: grafana/grafana:11.2.2
+    container_name: grafana
+    volumes:
+      - grafana_data:/var/lib/grafana  # docker managed volume
+    ports:
+      - "3000:3000"  # Expose Grafana on port 3000
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin  # Set admin password (default is admin)
+    depends_on:
+      - prometheus  # Ensure Prometheus starts before Grafana
+    restart: always
+
+  metrics-server:
+    build: ./metrics_server # Build the Dockerfile from the server directory
+    container_name: metrics_server
+    devices:
+      - "/dev/n2bmp280_00:/dev/n2bmp280_00"
+    environment:
+      - BMP280_DEVICE_PATH=/dev/n2bmp280_00
+    ports:
+      - "8081:8081"  # Expose the app on port 8081
+    restart: always
+
+volumes:
+  prometheus_data:
+  grafana_data:

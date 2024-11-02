@@ -1,0 +1,8 @@
+# prometheus.yml
+global:
+  scrape_interval: 60s  # How often to scrape targets
+
+scrape_configs:
+ - job_name: 'scrape_metrics_server'  # Name of the job for your application
+   static_configs:
+     - targets: ['metrics-server:8081']  # Target to scrape your application metrics
