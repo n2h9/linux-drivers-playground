@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "name": "Linux Kernel Modules",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/../kernel/raspberrypi/include",
+                "${workspaceFolder}/../kernel/raspberrypi/arch/arm64/include",
+                "${workspaceFolder}/../kernel/raspberrypi/arch/arm64/include/uapi",
+                "${workspaceFolder}/../kernel/raspberrypi/arch/arm64/include/generated"
+            ],
+            "defines": [
+                "__KERNEL__",
+                "MODULE"
+            ],
+            "compilerPath": "/usr/bin/clang++-15",
+            "cStandard": "c17",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "linux-clang-x64"
+        }
+    ],
+    "version": 4
+}
